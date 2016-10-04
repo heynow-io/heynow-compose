@@ -3,7 +3,7 @@ version: "2"
 services:
   eureka:
     container_name: heynow-eureka
-    image: io.heynow.eureka:latest
+    image: heynow/eureka:latest
     ports:
       - "9000:9000"
     networks:
@@ -11,7 +11,7 @@ services:
 
   config:
     container_name: heynow-config
-    image: io.heynow.configserver:latest
+    image: heynow/configserver:latest
     expose:
       - "8888"
     environment:
@@ -24,7 +24,7 @@ services:
 
   edge:
     container_name: heynow-edge
-    image: io.heynow.heynow-edge:latest
+    image: heynow/edge:latest
     ports:
       - "8081:8081"
     environment:

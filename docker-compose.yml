@@ -1,6 +1,22 @@
 version: "2"
 
 services:
+  db_volume:
+    container_name: heynow-db-volume
+    image: postgres:latest
+    volumes:
+      - /opt/heynow/data:/var/lib/postgresql/data
+    command: /bin/true
+
+
+  db:
+    container_name: heynow-db
+    image: postgres:latest
+    volumes_from:
+      - db_volume
+    environment:
+      - POSTGRES_PASSWORD=ocado
+      
   eureka:
     container_name: heynow-eureka
     image: heynow/eureka:latest

@@ -8,7 +8,6 @@ services:
       - /opt/heynow/data:/var/lib/postgresql/data
     command: /bin/true
 
-
   db:
     container_name: heynow-db
     image: postgres:latest
@@ -48,6 +47,19 @@ services:
     networks:
       - heynow
 
+  shephard:
+    container_name: heynow-shephard
+    image: heynow/shephard:latest
+    ports:
+      - "9999:8080"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:9000/eureka
+    depends_on:
+          - eureka
+          - config
+    networks:
+      - heynow
+      
   edge:
     container_name: heynow-edge
     image: heynow/edge:latest

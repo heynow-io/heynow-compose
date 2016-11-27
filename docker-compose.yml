@@ -16,6 +16,16 @@ services:
       - db_volume
     environment:
       - POSTGRES_PASSWORD=ocado
+    networks:
+      - heynow
+  
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+    networks:
+      - heynow
       
   eureka:
     container_name: heynow-eureka

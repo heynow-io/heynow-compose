@@ -61,6 +61,21 @@ services:
     networks:
       - heynow
       
+  stream-manager:
+    container_name: heynow-stream-manager
+    image: heynow/stream-manager:latest
+    ports:
+      - "8082:8080"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:9000/eureka
+      - spring.cloud.config.uri=http://config:8888
+    depends_on:
+      - eureka
+      - config
+      - db
+    networks:
+      - heynow
+      
   edge:
     container_name: heynow-edge
     image: heynow/edge:latest

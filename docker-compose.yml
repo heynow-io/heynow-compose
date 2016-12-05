@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 services:
   db_volume:
@@ -51,7 +51,7 @@ services:
     container_name: heynow-shephard
     image: heynow/shephard:latest
     ports:
-      - "9999:8080"
+      - "80:8080"
     environment:
       - eureka.client.serviceUrl.defaultZone=http://eureka:9000/eureka
       - spring.cloud.config.uri=http://config:8888
@@ -81,6 +81,48 @@ services:
     image: heynow/event-source:latest
     ports:
       - "8083:8080"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:9000/eureka
+      - spring.cloud.config.uri=http://config:8888
+    depends_on:
+      - eureka
+      - config
+    networks:
+      - heynow
+
+  email-sink:
+    container_name: heynow-email-sink
+    image: heynow/email-sink:latest
+    ports:
+      - "8084:8080"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:9000/eureka
+      - spring.cloud.config.uri=http://config:8888
+    depends_on:
+      - eureka
+      - config
+    networks:
+      - heynow
+
+  map-operator:
+    container_name: heynow-map-operator
+    image: heynow/map-operator:latest
+    ports:
+      - "8085:8080"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:9000/eureka
+      - spring.cloud.config.uri=http://config:8888
+    depends_on:
+      - eureka
+      - config
+    networks:
+      - heynow
+
+  filter-operator:
+    container_name: heynow-filter-operator
+    image: heynow/filter-operator:latest
+    ports:
+      - "8086:8080"
     environment:
       - eureka.client.serviceUrl.defaultZone=http://eureka:9000/eureka
       - spring.cloud.config.uri=http://config:8888

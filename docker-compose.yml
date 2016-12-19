@@ -10,7 +10,8 @@ services:
 
   db:
     container_name: heynow-db
-    image: postgres:latest
+    image: postgres:latest 
+    restart: always
     volumes_from:
       - db_volume
     environment:
@@ -20,7 +21,8 @@ services:
   
   rabbitmq:
     container_name: rabbitmq
-    image: rabbitmq:3-management
+    image: rabbitmq:3-management 
+    restart: always
     ports:
       - "15672:15672"
     networks:
@@ -28,7 +30,8 @@ services:
       
   eureka:
     container_name: heynow-eureka
-    image: heynow/eureka:latest
+    image: heynow/eureka:latest 
+    restart: always
     ports:
       - "9000:9000"
     networks:
@@ -36,7 +39,8 @@ services:
 
   config:
     container_name: heynow-config
-    image: heynow/configserver:latest
+    image: heynow/configserver:latest 
+    restart: always
     ports:
       - "8888:8888"
     environment:
@@ -49,7 +53,8 @@ services:
 
   shephard:
     container_name: heynow-shephard
-    image: heynow/shephard:latest
+    image: heynow/shephard:latest 
+    restart: always
     ports:
       - "80:8080"
     environment:
@@ -63,7 +68,8 @@ services:
       
   stream-manager:
     container_name: heynow-stream-manager
-    image: heynow/stream-manager:latest
+    image: heynow/stream-manager:latest 
+    restart: always
     ports:
       - "8082:8080"
     environment:
@@ -78,7 +84,8 @@ services:
       
   event-source:
     container_name: heynow-event-source
-    image: heynow/event-source:latest
+    image: heynow/event-source:latest 
+    restart: always
     ports:
       - "8083:8080"
     environment:
@@ -92,7 +99,8 @@ services:
 
   email-sink:
     container_name: heynow-email-sink
-    image: heynow/email-sink:latest
+    image: heynow/email-sink:latest 
+    restart: always
     ports:
       - "8084:8080"
     environment:
@@ -106,7 +114,8 @@ services:
 
   map-operator:
     container_name: heynow-map-operator
-    image: heynow/map-operator:latest
+    image: heynow/map-operator:latest 
+    restart: always
     ports:
       - "8085:8080"
     environment:
@@ -120,7 +129,8 @@ services:
 
   filter-operator:
     container_name: heynow-filter-operator
-    image: heynow/filter-operator:latest
+    image: heynow/filter-operator:latest 
+    restart: always
     ports:
       - "8086:8080"
     environment:
@@ -134,7 +144,8 @@ services:
       
   edge:
     container_name: heynow-edge
-    image: heynow/edge:latest
+    image: heynow/edge:latest 
+    restart: always
     ports:
       - "8081:8081"
     environment:

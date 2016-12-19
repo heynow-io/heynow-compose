@@ -25,7 +25,7 @@ services:
     image: namshi/smtp:latest
     build: .
     ports:
-      - "25:25"
+      - "2525:25"
     environment:
       MAILNAME: heynow
       

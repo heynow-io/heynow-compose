@@ -27,6 +27,8 @@ services:
       - "2525:25"
     environment:
       MAILNAME: heynow
+    networks:
+      - heynow
       
   rabbitmq:
     container_name: rabbitmq

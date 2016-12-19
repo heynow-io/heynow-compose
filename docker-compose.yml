@@ -18,7 +18,17 @@ services:
       - POSTGRES_PASSWORD=ocado
     networks:
       - heynow
-  
+      
+  smtp:
+    container_name: heynow-smtp
+    restart: always
+    image: namshi/smtp:latest
+    build: .
+    ports:
+      - "25:25"
+    environment:
+      MAILNAME: heynow
+      
   rabbitmq:
     container_name: rabbitmq
     image: rabbitmq:3-management 

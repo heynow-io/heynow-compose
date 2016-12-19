@@ -23,7 +23,6 @@ services:
     container_name: heynow-smtp
     restart: always
     image: namshi/smtp:latest
-    build: .
     ports:
       - "2525:25"
     environment:

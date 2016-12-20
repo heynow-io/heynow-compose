@@ -161,6 +161,7 @@ services:
       - "80:8081"
     environment:
       - eureka.client.serviceUrl.defaultZone=http://eureka:9000/eureka
+      - spring.cloud.config.uri=http://config:8888
     depends_on:
           - eureka
           - config
